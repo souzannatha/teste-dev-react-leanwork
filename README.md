@@ -29,6 +29,7 @@ Criar um e-commerce simples, com uma estrutura inicial de 3 páginas (home, pdp 
 
 #### Iremos avaliar as seguintes coisas:
 
+- Responsividade;
 - Navegação entre as páginas;
 - Gestão do carrinho funcional - Pode-se utilizar algum banco local ou o localStorage/cookies para salvar as informações;
 - Layout parecido - Tentar deixar ele o máximo parecido com o que será repassado logo abaixo;
