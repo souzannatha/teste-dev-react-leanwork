@@ -1,66 +1,69 @@
-![LeanworkGroup](./images/lwg.svg)
-# Teste Prático - Front-end - Leanwork Group
+# React + TypeScript + Vite
 
-## Introdução:
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Teste criado para avaliar candidatos à vaga de front-end na Leanwork. Para cada nível de cargo será avaliado o mesmo projeto, mas com pesos diferentes para cada parte da aplicação.
+Currently, two official plugins are available:
 
-#### *O Desafio*
-Criar um e-commerce simples, com uma estrutura inicial de 3 páginas (home, pdp e carrinho). O projeto deverá seguir as seguintes regras, a menos que o recrutador tenha solicitado algo diferente.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Instruções:
+## Expanding the ESLint configuration
 
-#### Você pode:
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-- **Tech Stack:** React (Vite/Next)
-- **Estilização:** CSS/SCSS/TailwidnCSS/Bootstrap/etc...
-- **Icons:** lucide/react-icons/etc...
-- **Gerenciador de estado:** redux/contexts/jotai/zustand/etc...
-- **Linters:** eslint/prettier/biomejs/etc...
-- **Apis:** axios/swr/react-query/fetch/etc...
-- **Rotas:** tanstack-router/react-router/react-easy-router/...
-- **Utilizar:** ``https://fakestoreapi.com/`` para os items do e-commerce;
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-#### Você não pode:
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
 
-- **Utilizar:** shadcn/radix/nextui/mui/etc...
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-## O que esperamos:
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-#### Iremos avaliar as seguintes coisas:
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-- Responsividade;
-- Navegação entre as páginas;
-- Gestão do carrinho funcional - Pode-se utilizar algum banco local ou o localStorage/cookies para salvar as informações;
-- Layout parecido - Tentar deixar ele o máximo parecido com o que será repassado logo abaixo;
-- Estrutura de código limpa e bem organizada;
-- Componentização para um projeto escalável e performático.
-
-#### Plus:
-
-- Testes e2e;
-- Autenticação;
-- Tela de pedidos;
-
-## Cores
-
-| Cor             | Hex                                                           |
-| ----------------- | ------------------------------------------------------------------ |
-| Price | ![#ea580c](https://via.placeholder.com/10/ea580c?text=+) #ea580c |
-| AddToCart | ![#15803d](https://via.placeholder.com/10/15803d?text=+) #15803d |
-| AddToCart:hover | ![#14532d](https://via.placeholder.com/10/14532d?text=+) #14532d |
-| Description | ![#374151](https://via.placeholder.com/10/374151?text=+) #374151 |
-| Buy it | ![#111827](https://via.placeholder.com/10/111827?text=+) #111827 |
-| Footer | ![#9ca3af](https://via.placeholder.com/10/9ca3af?text=+) #9ca3af |
-
-
-## Telas
-
-#### Home
-![LWG - HomePage](./images/lwg-front-test-homePage.jpg)
-
-#### PDP
-![LWG - pdpPage](./images/lwg-front-test-pdpPage.jpg)
-
-#### Carrinho
-![LWG - cartPage](./images/lwg-front-test-cartPage.jpg)
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
