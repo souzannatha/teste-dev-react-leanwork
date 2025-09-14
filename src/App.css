@@ -1,10 +1,10 @@
 #root {
-  --price: '#ea580c';
-  --addToCart: '#15803d';
-  --addToCartHover: '#14532d';
-  --description: '#374151';
-  --buy: '#111827';
-  --footer: '#9ca3af';
+  --price: #ea580c;
+  --addToCart: #15803d;
+  --addToCartHover: #14532d;
+  --description: #374151;
+  --buy: #111827;
+  --footer: #9ca3af;
 }
 
 * {
@@ -15,6 +15,10 @@
 }
 
 body {
-  max-width: 90rem;
   -webkit-font-smoothing: antialiased;
+  margin: 0 auto;
+}
+
+img {
+  display: block;
 }
